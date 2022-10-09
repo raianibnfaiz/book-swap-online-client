@@ -54,7 +54,7 @@ const Login = () => {
     const navigateRegister = event => {
         navigate('/signup');
     }
-    if (user) {
+    if (user || gUser) {
         navigate(from, { replace: true });
     }
 

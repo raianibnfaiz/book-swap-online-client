@@ -24,7 +24,7 @@ const Signup = () => {
     if (loading || gLoading) {
         return <Loading></Loading>
     }
-    if (user) {
+    if (user || gUser) {
         navigate('/home');
     }
 
@@ -33,6 +33,7 @@ const Signup = () => {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
+        const currentUser = { name, email, password }
         if (password.length < 6) {
             setError("password length must be greater than 6 character!");
             return;
@@ -40,7 +41,19 @@ const Signup = () => {
 
         createUserWithEmailAndPassword(email, password);
         updateProfile({ displayName: name });
+        fetch(`http://localhost:5000/user/${email}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(currentUser)
+        })
+            .then(res => res.json())
+            .then(data =>
+                console.log("updated!", data)
+            )
     }
+
 
     return (
         <div className='register-form w-50 mx-auto p-2 mb-4'>

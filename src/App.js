@@ -19,6 +19,7 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<Signup />}></Route>
         <Route path='/myProfile/:email' element={<MyProfile />}></Route>
         <Route path='/bookRequest/:email' element={<MyBookRequest />}></Route>
         <Route path='/sentRequest/:email' element={<MySentRequest />}></Route>
